@@ -1,10 +1,25 @@
-# Configuration Cloudflare Pages pour MARIAM SHOP
-# Documentation : https://developers.cloudflare.com/pages/functions/wrangler-configuration/
+# Configuration Cloudflare Workers pour MARIAM SHOP
+# Worker + fichiers statiques (dist/) : https://developers.cloudflare.com/workers/static-assets/
+# Déploiement : npm run build && npx wrangler deploy
+# (ou automatiquement par Workers Builds à chaque push sur GitHub)
 
 name = "mariam-shop"
+main = "src/index.js"
 compatibility_date = "2026-10-01"
 compatibility_flags = ["nodejs_compat"]
-pages_build_output_dir = "./dist"
+
+# ---------------------------------------------------------------------------
+# Fichiers statiques générés par `npm run build`
+# - 404.html servi pour les chemins inconnus
+# - run_worker_first : chemins où le Worker s'exécute AVANT la recherche
+#   d'un fichier statique (API, pages dynamiques, photos, espace admin protégé)
+# ---------------------------------------------------------------------------
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+not_found_handling = "404-page"
+html_handling = "auto-trailing-slash"
+run_worker_first = ["/api/*", "/annonces/*", "/photos/*", "/admin", "/admin/*", "/sitemap.xml"]
 
 # ---------------------------------------------------------------------------
 # Base de données D1
@@ -25,17 +40,20 @@ binding = "PHOTOS"
 bucket_name = "mariam-shop-photos"
 
 # ---------------------------------------------------------------------------
-# Variables NON secrètes (les secrets se configurent dans le tableau de bord
-# Cloudflare > Pages > Settings > Environment variables, ou via
-# `npx wrangler pages secret put NOM_DU_SECRET`).
+# Variables NON secrètes. Les secrets (TURNSTILE_SECRET, ADMIN_SESSION_SECRET,
+# ORANGE_MONEY_*) se configurent avec `npx wrangler secret put NOM` ou dans le
+# tableau de bord : Workers & Pages > mariam-shop > Settings > Variables and Secrets.
 # ---------------------------------------------------------------------------
 [vars]
 ENVIRONNEMENT = "production"
 # Durée de session admin en secondes (12 h)
 ADMIN_SESSION_DUREE = "43200"
-# Limites de débit : nombre max de soumissions par IP et par fenêtre (en secondes)
+# Limites de débit : nombre max de soumissions par IP et par fenêtre
 LIMITE_ANNONCES_PAR_HEURE = "5"
 LIMITE_CONTACT_PAR_HEURE = "5"
 LIMITE_CONNEXION_PAR_QUART_HEURE = "10"
 # Paiement Orange Money (phase 2) : "false" tant que les identifiants ne sont pas fournis
 PAIEMENT_ACTIF = "false"
+
+[observability]
+enabled = true

@@ -5,9 +5,9 @@ Les tests marqués **(auto)** ont déjà été vérifiés en local par requêtes
 
 ## 0. Préparation
 - [ ] Clé publique Turnstile réelle dans `site.config.json` (`TURNSTILE_SITE_KEY`) et `npm run build` relancé
-- [ ] Secrets `TURNSTILE_SECRET` et `ADMIN_SESSION_SECRET` définis sur Pages
+- [ ] Secrets `TURNSTILE_SECRET` et `ADMIN_SESSION_SECRET` définis sur le Worker (Variables and Secrets)
 - [ ] Schéma et catégories exécutés sur la base distante, au moins un administrateur créé
-- [ ] Site accessible en HTTPS sur `https://mariam-shop.pages.dev`
+- [ ] Site accessible en HTTPS sur `https://mariam-shop.touresoumailou19.workers.dev`
 
 ## 1. Dépôt d'annonce (page /deposer-une-annonce/)
 - [ ] Les listes Catégorie et Ville se remplissent
@@ -98,7 +98,7 @@ Les tests marqués **(auto)** ont déjà été vérifiés en local par requêtes
 - [ ] 6e envoi en moins d'une heure → 429 **(auto)**
 
 ## 5. Sécurité
-- [ ] En-têtes présents sur une page statique ET sur une fiche (Functions) : Content-Security-Policy, X-Frame-Options: DENY, Referrer-Policy, Strict-Transport-Security, X-Content-Type-Options **(auto)**
+- [ ] En-têtes présents sur une page statique ET sur une fiche (Worker) : Content-Security-Policy, X-Frame-Options: DENY, Referrer-Policy, Strict-Transport-Security, X-Content-Type-Options **(auto)**
 - [ ] Aucune erreur CSP dans la console du navigateur (y compris avec le widget Turnstile)
 - [ ] Le site refuse d'être affiché dans une iframe externe
 - [ ] /api/annonces ne contient ni `telephone_vendeur` ni `nom_vendeur` **(auto)**
@@ -118,7 +118,7 @@ Les tests marqués **(auto)** ont déjà été vérifiés en local par requêtes
 - [ ] Page fiche : première photo nette, carrousel utilisable au doigt
 
 ## 7. Après mise en production
-- [ ] Soumettre `https://mariam-shop.pages.dev/sitemap.xml` dans Google Search Console
+- [ ] Soumettre `https://mariam-shop.touresoumailou19.workers.dev/sitemap.xml` dans Google Search Console
 - [ ] Vérifier l'aperçu de partage avec https://developers.facebook.com/tools/debug/
 - [ ] Activer une règle Rate Limiting WAF (voir README §5.4)
 - [ ] Sauvegarde : `npx wrangler d1 export mariam-shop-db --remote --output=sauvegarde.sql` planifiée régulièrement

@@ -7,8 +7,8 @@ Site vitrine, catalogue d'annonces validées et espace administrateur pour **MAR
 | Brique | Technologie |
 |---|---|
 | Frontend | HTML, CSS et JavaScript vanilla (aucun framework, aucune dépendance) |
-| Hébergement | Cloudflare Pages |
-| Backend | Cloudflare Pages Functions (Workers) |
+| Hébergement | Cloudflare Workers avec fichiers statiques (CDN mondial, HTTPS inclus) |
+| Backend | Cloudflare Worker (`src/index.js` + modules de `src/routes/`) |
 | Base de données | Cloudflare D1 (SQLite) |
 | Photos | Cloudflare R2 |
 | Anti-spam | Cloudflare Turnstile |
@@ -38,39 +38,40 @@ mariam_shop/
 │   │   ├── js/                     # app.js (commun), accueil, annonces, fiche, deposer, contact, connexion, admin
 │   │   └── img/                    # logo.svg, favicon.svg, placeholder.svg, og-default.png
 │   ├── _headers                    # En-têtes de sécurité des fichiers statiques
-│   ├── _routes.json                # Chemins traités par les Functions
 │   └── robots.txt
-├── functions/                      # Cloudflare Pages Functions (routage par fichiers)
-│   ├── _middleware.js              # En-têtes de sécurité + gestion d'erreurs globale
-│   ├── annonces/[slug].js          # Fiche annonce rendue côté serveur (SEO, JSON-LD Product)
-│   ├── photos/[[cle]].js           # Sert les photos depuis R2 (contrôle de visibilité)
-│   ├── sitemap.xml.js              # Sitemap dynamique
-│   ├── admin/_middleware.js        # Protège les pages /admin/* (redirection si pas de session)
-│   └── api/
-│       ├── categories.js           # GET catégories + villes
-│       ├── contact.js              # POST formulaire de contact
-│       ├── annonces/index.js       # GET liste publique / POST dépôt d'annonce
-│       ├── annonces/[slug].js      # GET fiche publique (JSON)
-│       ├── paiement/initier.js     # Stub Orange Money (phase 2)
-│       ├── paiement/callback.js    # Stub notification Orange Money (phase 2)
-│       └── admin/
-│           ├── _middleware.js      # Exige une session valide (+ contrôle Origin)
-│           ├── connexion.js        # POST connexion
-│           ├── deconnexion.js      # POST déconnexion
-│           ├── session.js          # GET admin connecté + compteurs
-│           ├── annonces/index.js   # GET liste par statut
-│           ├── annonces/[id].js    # GET / PUT / PATCH (statut) / DELETE
-│           ├── annonces/[id]/photos/[photoId].js  # DELETE photo
-│           ├── messages/index.js   # GET messages de contact
-│           └── messages/[id].js    # PATCH lu / DELETE
-├── src/lib/                        # Code partagé par les Functions
-│   ├── db.js                       # Requêtes D1 paramétrées
-│   ├── securite.js                 # PBKDF2, sessions HMAC, cookies
-│   ├── validation.js               # Validation serveur de toutes les entrées
-│   ├── turnstile.js                # Vérification Turnstile
-│   ├── limite.js                   # Limitation de débit (D1)
-│   ├── reponse.js                  # Réponses JSON/HTML, en-têtes de sécurité
-│   └── html.js                     # Gabarit HTML serveur, échappement
+├── src/
+│   ├── index.js                    # Point d'entrée du Worker : table des routes + middlewares
+│   ├── routes/                     # Un module par route (onRequestGet, onRequestPost…)
+│   │   ├── _middleware.js          # En-têtes de sécurité + gestion d'erreurs globale
+│   │   ├── annonces/[slug].js      # Fiche annonce rendue côté serveur (SEO, JSON-LD Product)
+│   │   ├── photos/[[cle]].js       # Sert les photos depuis R2 (contrôle de visibilité)
+│   │   ├── sitemap.xml.js          # Sitemap dynamique
+│   │   ├── admin/_middleware.js    # Protège les pages /admin/* (redirection si pas de session)
+│   │   └── api/
+│   │       ├── categories.js       # GET catégories + villes
+│   │       ├── contact.js          # POST formulaire de contact
+│   │       ├── annonces/index.js   # GET liste publique / POST dépôt d'annonce
+│   │       ├── annonces/[slug].js  # GET fiche publique (JSON)
+│   │       ├── paiement/initier.js # Stub Orange Money (phase 2)
+│   │       ├── paiement/callback.js# Stub notification Orange Money (phase 2)
+│   │       └── admin/
+│   │           ├── _middleware.js  # Exige une session valide (+ contrôle Origin)
+│   │           ├── connexion.js    # POST connexion
+│   │           ├── deconnexion.js  # POST déconnexion
+│   │           ├── session.js      # GET admin connecté + compteurs
+│   │           ├── annonces/index.js            # GET liste par statut
+│   │           ├── annonces/[id].js             # GET / PUT / PATCH (statut) / DELETE
+│   │           ├── annonces/[id]/photos/[photoId].js  # DELETE photo
+│   │           ├── messages/index.js            # GET messages de contact
+│   │           └── messages/[id].js             # PATCH lu / DELETE
+│   └── lib/                        # Code partagé
+│       ├── db.js                   # Requêtes D1 paramétrées
+│       ├── securite.js             # PBKDF2, sessions HMAC, cookies
+│       ├── validation.js           # Validation serveur de toutes les entrées
+│       ├── turnstile.js            # Vérification Turnstile
+│       ├── limite.js               # Limitation de débit (D1)
+│       ├── reponse.js              # Réponses JSON/HTML, en-têtes de sécurité
+│       └── html.js                 # Gabarit HTML serveur, échappement
 ├── scripts/
 │   ├── build.mjs                   # public/ → dist/ avec remplacement des {{JETONS}}
 │   ├── hash-password.mjs           # Génère le hash d'un mot de passe admin
@@ -78,7 +79,7 @@ mariam_shop/
 ├── schema.sql                      # Schéma D1
 ├── seed.sql                        # Catégories de base
 ├── site.config.json                # Coordonnées et textes publics (source unique)
-├── wrangler.toml                   # Configuration Cloudflare (bindings D1, R2, variables)
+├── wrangler.toml                   # Configuration Cloudflare (Worker, assets, bindings D1, R2, variables)
 ├── .dev.vars.example               # Modèle de secrets pour le développement local
 ├── package.json
 ├── README.md
@@ -133,7 +134,7 @@ npm run dev
 #    → http://127.0.0.1:8788   (admin : http://127.0.0.1:8788/admin/connexion)
 ```
 
-`npm run dev` construit `dist/` puis lance `wrangler pages dev ./dist` avec les bindings de `wrangler.toml` (D1 et R2 simulés localement dans `.wrangler/`).
+`npm run dev` construit `dist/` puis lance `wrangler dev` avec les bindings de `wrangler.toml` (D1 et R2 simulés localement dans `.wrangler/`).
 
 ---
 
@@ -159,25 +160,26 @@ npx wrangler d1 execute mariam-shop-db --remote --file=./seed.sql
 npx wrangler r2 bucket create mariam-shop-photos
 ```
 
-### 4.3 Créer le projet Pages et déployer
+### 4.3 Déployer le Worker
+
+**Option A – déploiement automatique depuis GitHub (recommandé, déjà configuré)**
+Le projet Cloudflare `mariam-shop` est connecté au dépôt `STOURE2022/mariam_shop` (Workers Builds). Chaque `git push` sur `main` exécute `npm run build` puis `npx wrangler deploy`. Le déploiement échoue tant que `database_id` dans `wrangler.toml` n'est pas un identifiant D1 réel et que le bucket R2 n'existe pas (§4.2).
+
+**Option B – déploiement manuel depuis votre machine**
 
 ```bash
-npm run build
-npx wrangler pages project create mariam-shop --production-branch=main   # première fois seulement
-npx wrangler pages deploy ./dist
+npm run deploy          # = npm run build && npx wrangler deploy
 ```
 
-Les bindings D1 (`DB`) et R2 (`PHOTOS`) déclarés dans `wrangler.toml` sont appliqués automatiquement au projet Pages lors du déploiement.
-
-> Alternative : connecter un dépôt Git dans le tableau de bord Pages avec la commande de build `npm run build` et le dossier de sortie `dist`. Chaque `git push` déploie alors automatiquement.
+Les bindings D1 (`DB`), R2 (`PHOTOS`) et les fichiers statiques (`ASSETS`) déclarés dans `wrangler.toml` sont appliqués au Worker à chaque déploiement. Adresse du site : `https://mariam-shop.<votre-sous-domaine>.workers.dev`.
 
 ### 4.4 Variables d'environnement et secrets
 
-Dans **Cloudflare Dashboard → Workers & Pages → mariam-shop → Settings → Environment variables** (production), ou en ligne de commande :
+Dans **Cloudflare Dashboard → Workers & Pages → mariam-shop → Settings → Variables and Secrets** (type « Secret »), ou en ligne de commande :
 
 ```bash
-npx wrangler pages secret put TURNSTILE_SECRET
-npx wrangler pages secret put ADMIN_SESSION_SECRET
+npx wrangler secret put TURNSTILE_SECRET
+npx wrangler secret put ADMIN_SESSION_SECRET
 ```
 
 | Variable | Type | Obligatoire | Description |
@@ -195,18 +197,17 @@ npx wrangler pages secret put ADMIN_SESSION_SECRET
 | `ORANGE_MONEY_CLIENT_SECRET` | Secret | Phase 2 | Secret OAuth |
 | `ORANGE_MONEY_URL_API` | Texte | Phase 2 | `https://api.orange.com` |
 
-Après avoir ajouté des variables, redéployez (`npx wrangler pages deploy ./dist`) pour qu'elles soient prises en compte.
+Les secrets ajoutés sont pris en compte immédiatement par le Worker (pas besoin de redéployer).
 
 ### 4.5 Domaine personnalisé (plus tard)
 
-Le site démarre sur l'adresse gratuite `https://mariam-shop.pages.dev` : rien à configurer, HTTPS inclus. Le nom `mariam-shop` doit être disponible lors de `wrangler pages project create` ; sinon choisissez un autre nom et reportez-le dans `wrangler.toml` (`name`) et `site.config.json` (`SITE_URL`). Le jour où vous achetez un domaine :
+Le site démarre sur l'adresse gratuite `https://mariam-shop.touresoumailou19.workers.dev` : rien à configurer, HTTPS inclus. Le jour où vous achetez un domaine :
 
-1. Dans **Workers & Pages → mariam-shop → Custom domains → Set up a custom domain**, saisissez `[DOMAINE]` (ex. `mariamshop.ml`) puis `www.[DOMAINE]`.
-2. Si le domaine est déjà géré par Cloudflare (DNS sur Cloudflare), l'enregistrement CNAME est créé automatiquement. Sinon, ajoutez chez votre registrar un `CNAME` pointant vers `mariam-shop.pages.dev` (ou transférez d'abord la zone DNS vers Cloudflare, recommandé).
-3. Le certificat HTTPS est émis automatiquement (quelques minutes).
-4. Mettez à jour `SITE_URL` dans `site.config.json`, relancez `npm run build` et redéployez : les balises canoniques, Open Graph, le sitemap et robots.txt utiliseront le bon domaine.
-5. Dans **Turnstile**, ajoutez le domaine à la liste des hostnames autorisés du widget.
-6. Facultatif : **Rules → Redirect Rules** pour rediriger `www.` vers le domaine nu (ou l'inverse).
+1. La zone DNS du domaine doit être gérée par Cloudflare (ajoutez le site dans le tableau de bord et changez les serveurs de noms chez votre registrar).
+2. Dans **Workers & Pages → mariam-shop → Settings → Domains & Routes → Add → Custom domain**, saisissez le domaine (ex. `mariamshop.ml`) puis recommencez pour `www.mariamshop.ml`. Cloudflare crée les enregistrements DNS et le certificat HTTPS automatiquement.
+3. Mettez à jour `SITE_URL` dans `site.config.json`, puis `git push` (ou `npm run deploy`) : les balises canoniques, Open Graph, le sitemap et robots.txt utiliseront le bon domaine.
+4. Dans **Turnstile**, ajoutez le domaine à la liste des hostnames autorisés du widget.
+5. Facultatif : **Rules → Redirect Rules** pour rediriger `www.` vers le domaine nu (ou l'inverse).
 
 ---
 
@@ -309,9 +310,9 @@ Pour activer : obtenir les identifiants marchands auprès d'Orange Mali, renseig
 |---|---|
 | `npm run build` | Génère `dist/` à partir de `public/` et `site.config.json` |
 | `npm run dev` | Build + serveur local sur le port 8788 |
-| `npm run deploy` | Build + déploiement Pages |
+| `npm run deploy` | Build + déploiement du Worker |
 | `npm run db:init:local` / `db:init:remote` | Schéma + catégories (local / production) |
 | `npm run admin:hash -- "motdepasse"` | Hash PBKDF2 d'un mot de passe |
 | `node scripts/generer-og.mjs` | Régénère l'image Open Graph par défaut |
 | `npx wrangler d1 execute mariam-shop-db --remote --command "SELECT ..."` | Requête SQL sur la production |
-| `npx wrangler pages deployment tail` | Journaux en direct des Functions |
+| `npx wrangler tail` | Journaux en direct du Worker |
