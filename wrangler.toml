@@ -29,7 +29,7 @@ run_worker_first = ["/api/*", "/annonces/*", "/photos/*", "/admin", "/admin/*", 
 [[d1_databases]]
 binding = "DB"
 database_name = "mariam-shop-db"
-database_id = "A_REMPLACER_PAR_L_ID_AFFICHE_PAR_WRANGLER"
+database_id = "fa599eeb-3d26-4fdf-88d9-a063f63eb79d"
 
 # ---------------------------------------------------------------------------
 # Stockage des photos R2
