@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mentions légales – {{SITE_NOM}}</title>
+  <meta name="description" content="Mentions légales, conditions d'utilisation et politique de confidentialité du site {{SITE_NOM}}, entreprise individuelle au Mali.">
+  <link rel="canonical" href="{{SITE_URL}}/mentions-legales/">
+  <meta name="robots" content="noindex, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{SITE_NOM}}">
+  <meta property="og:title" content="Mentions légales – {{SITE_NOM}}">
+  <meta property="og:description" content="Mentions légales et conditions d'utilisation de {{SITE_NOM}}.">
+  <meta property="og:url" content="{{SITE_URL}}/mentions-legales/">
+  <meta property="og:image" content="{{SITE_URL}}/assets/img/og-default.png">
+  <meta name="theme-color" content="#14532d">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script src="/assets/js/app.js" defer></script>
+</head>
+<body>
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+<header class="entete">
+  <div class="conteneur entete__barre">
+    <a class="logo" href="/" aria-label="{{SITE_NOM}} – accueil"><img src="/assets/img/logo.svg" width="40" height="40" alt=""><span>{{SITE_NOM}}</span></a>
+    <button class="menu-bouton" type="button" aria-expanded="false" aria-controls="menu-principal" data-menu-bouton><span class="menu-bouton__barres" aria-hidden="true"></span><span class="visuellement-cache">Menu</span></button>
+    <nav id="menu-principal" class="menu" aria-label="Navigation principale">
+      <a href="/">Accueil</a>
+      <a href="/annonces/">Annonces</a>
+      <a href="/services/">Services</a>
+      <a href="/a-propos/">À propos &amp; contact</a>
+      <a class="bouton bouton--or" href="/deposer-une-annonce/">Déposer une annonce</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu" class="principal">
+  <section class="conteneur section section--etroite">
+    <h1>Mentions légales</h1>
+    <div class="texte-legal">
+      <h2 id="editeur">Éditeur du site</h2>
+      <p><strong>Raison sociale :</strong> {{RAISON_SOCIALE}}<br>
+      <strong>Forme juridique :</strong> {{FORME_JURIDIQUE}} (personne physique)<br>
+      <strong>Responsable :</strong> {{RESPONSABLE}}<br>
+      <strong>Activité principale :</strong> {{ACTIVITE}}<br>
+      <strong>Immatriculation au RCCM :</strong> n° {{RCCM}}, le {{DATE_RCCM}}<br>
+      <strong>Numéro d'Immatriculation National (NINA) :</strong> {{NINA}}<br>
+      <strong>Siège :</strong> {{SITE_ADRESSE}}<br>
+      <strong>Téléphone :</strong> <a href="tel:+{{SITE_TELEPHONE_INTERNATIONAL}}">{{SITE_TELEPHONE}}</a> / <a href="tel:+{{SITE_TELEPHONE_2_INTERNATIONAL}}">{{SITE_TELEPHONE_2}}</a><br>
+      <strong>E-mail :</strong> <a href="mailto:{{SITE_EMAIL}}">{{SITE_EMAIL}}</a></p>
+
+      <h2 id="hebergement">Hébergement</h2>
+      <p>Le site est hébergé par Cloudflare, Inc., 101 Townsend St, San Francisco, CA 94107, États-Unis (<a href="https://www.cloudflare.com" rel="noopener" target="_blank">www.cloudflare.com</a>).</p>
+
+      <h2 id="conditions">Conditions d'utilisation</h2>
+      <p>En déposant une annonce sur {{SITE_NOM}}, l'utilisateur s'engage à :</p>
+      <ul>
+        <li>fournir des informations exactes, un prix réel et des photos correspondant au produit ou service proposé ;</li>
+        <li>ne proposer que des biens et services licites au Mali ; sont notamment interdits les produits contrefaits, les armes, les médicaments sans autorisation, les animaux protégés et tout contenu contraire à l'ordre public ou aux bonnes mœurs ;</li>
+        <li>être joignable au numéro communiqué et répondre de bonne foi aux acheteurs ;</li>
+        <li>respecter les lois en vigueur et les droits des tiers (propriété intellectuelle, droit à l'image).</li>
+      </ul>
+      <p>{{SITE_NOM}} se réserve le droit de refuser, de modifier ou de retirer toute annonce sans préavis ni justification, notamment en cas de non-respect des présentes conditions. Les annonces sont publiées après validation ; la publication ne vaut pas garantie du produit ou du service par {{SITE_NOM}}.</p>
+      <p>{{SITE_NOM}} agit comme intermédiaire technique pour les annonces déposées par des tiers et n'est pas partie aux transactions conclues entre vendeurs et acheteurs. Nous recommandons la remise en main propre dans un lieu public et la vérification du bien avant tout paiement.</p>
+
+      <h2 id="donnees">Données personnelles</h2>
+      <p>Les données collectées (nom, numéro de téléphone, e-mail, contenu des annonces et des messages) sont utilisées uniquement pour la gestion des annonces, la mise en relation avec les acheteurs via WhatsApp et la réponse aux demandes de contact. Elles sont conservées le temps nécessaire à ces finalités et ne sont ni vendues ni cédées à des tiers.</p>
+      <p>Le numéro de téléphone du vendeur n'est jamais affiché en clair sur le site : il sert uniquement à générer le bouton « Contacter sur WhatsApp » d'une annonce publiée. Conformément à la loi n° 2013-015 du 21 mai 2013 portant protection des données à caractère personnel en République du Mali, vous disposez d'un droit d'accès, de rectification et de suppression de vos données : écrivez-nous à <a href="mailto:{{SITE_EMAIL}}">{{SITE_EMAIL}}</a>.</p>
+
+      <h2 id="cookies">Cookies</h2>
+      <p>Le site n'utilise que des cookies strictement nécessaires à son fonctionnement (session de l'espace administrateur et protection anti-robot Cloudflare Turnstile). Aucun cookie publicitaire, de mesure d'audience tierce ou de suivi n'est déposé.</p>
+
+      <h2 id="propriete">Propriété intellectuelle</h2>
+      <p>La structure du site, les textes, le logo et les éléments graphiques sont la propriété de {{SITE_NOM}}. Les photos et descriptions des annonces restent la propriété de leurs auteurs, qui accordent à {{SITE_NOM}} une licence d'affichage pour la durée de publication.</p>
+
+      <h2 id="droit">Droit applicable</h2>
+      <p>Le présent site est soumis au droit malien. Tout litige relève des juridictions maliennes compétentes, après tentative de règlement amiable.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="pied">
+  <div class="conteneur pied__grille">
+    <div><p class="pied__titre">{{SITE_NOM}}</p><p>{{SITE_SLOGAN}}</p><p>{{SITE_ADRESSE}}</p></div>
+    <div><p class="pied__titre">Contact</p><p><a href="tel:+{{SITE_TELEPHONE_INTERNATIONAL}}">{{SITE_TELEPHONE}}</a></p><p><a href="https://wa.me/{{SITE_TELEPHONE_INTERNATIONAL}}" rel="noopener" target="_blank">WhatsApp</a></p><p><a href="mailto:{{SITE_EMAIL}}">{{SITE_EMAIL}}</a></p></div>
+    <div><p class="pied__titre">Informations</p><p><a href="/services/">Nos services</a></p><p><a href="/a-propos/">À propos &amp; contact</a></p><p><a href="/mentions-legales/">Mentions légales</a></p><p><a href="/mentions-legales/#conditions">Conditions d'utilisation</a></p></div>
+  </div>
+  <p class="pied__copyright">© {{ANNEE}} {{SITE_NOM}} – {{FORME_JURIDIQUE}}, Mali. Tous droits réservés.</p>
+</footer>
+<div class="bandeau-cookies" role="region" aria-label="Information sur les cookies" hidden data-bandeau-cookies>
+  <p>Ce site n'utilise que des cookies techniques indispensables (session administrateur, sécurité). Aucun cookie publicitaire ni de suivi.</p>
+  <button type="button" class="bouton bouton--petit" data-cookies-ok>J'ai compris</button>
+</div>
+</body>
+</html>

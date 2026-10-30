@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "description": "Chemins traités par les Pages Functions ; le reste est servi en statique (CDN).",
+  "include": ["/api/*", "/annonces/*", "/photos/*", "/admin", "/admin/*", "/sitemap.xml"],
+  "exclude": ["/annonces/", "/assets/*"]
+}

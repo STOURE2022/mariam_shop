@@ -1,0 +1,18 @@
+{
+  "name": "mariam-shop",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site vitrine et plateforme d'annonces de MARIAM SHOP (Mali) — Cloudflare Pages, Functions, D1, R2, Turnstile",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "npm run build && npx wrangler pages dev ./dist --port 8788",
+    "deploy": "npm run build && npx wrangler pages deploy ./dist",
+    "db:init:local": "npx wrangler d1 execute mariam-shop-db --local --file=./schema.sql && npx wrangler d1 execute mariam-shop-db --local --file=./seed.sql",
+    "db:init:remote": "npx wrangler d1 execute mariam-shop-db --remote --file=./schema.sql && npx wrangler d1 execute mariam-shop-db --remote --file=./seed.sql",
+    "admin:hash": "node scripts/hash-password.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

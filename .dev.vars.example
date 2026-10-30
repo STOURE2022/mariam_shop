@@ -1,0 +1,11 @@
+# Copier ce fichier en `.dev.vars` (ignoré par git) pour le développement local.
+# Clé de test Turnstile qui accepte toujours : voir https://developers.cloudflare.com/turnstile/troubleshooting/testing/
+TURNSTILE_SECRET="1x0000000000000000000000000000000AA"
+# Générer avec : openssl rand -hex 32   (ou node -e "console.log(require('crypto').randomBytes(32).toString('hex'))")
+ADMIN_SESSION_SECRET="changez-moi-64-caracteres-aleatoires-minimum"
+ENVIRONNEMENT="developpement"
+# Orange Money WebPay (phase 2, laisser vide tant que non fourni)
+ORANGE_MONEY_MERCHANT_KEY=""
+ORANGE_MONEY_CLIENT_ID=""
+ORANGE_MONEY_CLIENT_SECRET=""
+ORANGE_MONEY_URL_API="https://api.orange.com"

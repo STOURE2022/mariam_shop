@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{SITE_NOM}} – Boutique et annonces au Mali</title>
+  <meta name="description" content="{{SITE_DESCRIPTION}}">
+  <link rel="canonical" href="{{SITE_URL}}/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{SITE_NOM}}">
+  <meta property="og:title" content="{{SITE_NOM}} – Boutique et annonces au Mali">
+  <meta property="og:description" content="{{SITE_DESCRIPTION}}">
+  <meta property="og:url" content="{{SITE_URL}}/">
+  <meta property="og:image" content="{{SITE_URL}}/assets/img/og-default.png">
+  <meta property="og:locale" content="fr_ML">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#14532d">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "{{SITE_NOM}}",
+    "description": "{{SITE_DESCRIPTION}}",
+    "url": "{{SITE_URL}}/",
+    "telephone": "+{{SITE_TELEPHONE_INTERNATIONAL}}",
+    "email": "{{SITE_EMAIL}}",
+    "image": "{{SITE_URL}}/assets/img/og-default.png",
+    "priceRange": "FCFA",
+    "currenciesAccepted": "XOF",
+    "paymentAccepted": "Cash, Mobile Money",
+    "address": { "@type": "PostalAddress", "streetAddress": "{{SITE_ADRESSE}}", "addressLocality": "{{SITE_VILLE}}", "addressRegion": "Koulikoro", "addressCountry": "ML" },
+    "identifier": [
+      { "@type": "PropertyValue", "propertyID": "RCCM", "value": "{{RCCM}}" },
+      { "@type": "PropertyValue", "propertyID": "NINA", "value": "{{NINA}}" }
+    ],
+    "areaServed": { "@type": "Country", "name": "Mali" },
+    "founder": { "@type": "Person", "name": "{{RESPONSABLE}}" }
+  }
+  </script>
+  <script src="/assets/js/app.js" defer></script>
+  <script src="/assets/js/accueil.js" defer></script>
+</head>
+<body>
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+<header class="entete">
+  <div class="conteneur entete__barre">
+    <a class="logo" href="/" aria-label="{{SITE_NOM}} – accueil"><img src="/assets/img/logo.svg" width="40" height="40" alt=""><span>{{SITE_NOM}}</span></a>
+    <button class="menu-bouton" type="button" aria-expanded="false" aria-controls="menu-principal" data-menu-bouton><span class="menu-bouton__barres" aria-hidden="true"></span><span class="visuellement-cache">Menu</span></button>
+    <nav id="menu-principal" class="menu" aria-label="Navigation principale">
+      <a href="/" aria-current="page">Accueil</a>
+      <a href="/annonces/">Annonces</a>
+      <a href="/services/">Services</a>
+      <a href="/a-propos/">À propos &amp; contact</a>
+      <a class="bouton bouton--or" href="/deposer-une-annonce/">Déposer une annonce</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu" class="principal">
+  <section class="banniere">
+    <div class="conteneur banniere__contenu">
+      <h1>{{SITE_NOM}}</h1>
+      <p>{{SITE_SLOGAN}}. Achetez, vendez et trouvez des prestataires de confiance : chaque annonce est vérifiée avant publication.</p>
+      <div class="groupe-boutons">
+        <a class="bouton bouton--or" href="/annonces/">Voir les annonces</a>
+        <a class="bouton bouton--secondaire" style="color:#fff;border-color:#fff" href="/deposer-une-annonce/">Déposer une annonce</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="conteneur section">
+    <h2>Pourquoi choisir {{SITE_NOM}} ?</h2>
+    <div class="atouts">
+      <article class="atout">
+        <h3>Annonces vérifiées</h3>
+        <p>Chaque annonce est relue et validée par notre équipe avant d'être publiée, pour limiter les arnaques.</p>
+      </article>
+      <article class="atout">
+        <h3>Contact direct WhatsApp</h3>
+        <p>Commandez ou contactez le vendeur en un clic, sans créer de compte. Prix affichés en FCFA.</p>
+      </article>
+      <article class="atout">
+        <h3>Partout au Mali</h3>
+        <p>Bamako et toutes les régions : filtrez par ville pour trouver ce qui est proche de chez vous.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="conteneur section">
+    <div class="section__entete">
+      <h2>Annonces récentes</h2>
+      <a href="/annonces/">Toutes les annonces →</a>
+    </div>
+    <ul id="annonces-recentes" class="grille-annonces" aria-live="polite">
+      <li class="squelette"></li><li class="squelette"></li><li class="squelette"></li><li class="squelette"></li>
+    </ul>
+  </section>
+
+  <section class="conteneur section">
+    <div class="atout" style="border-top-color:var(--vert-700)">
+      <h2>Vous avez quelque chose à vendre ou un service à proposer ?</h2>
+      <p>Déposez votre annonce gratuitement en 2 minutes avec jusqu'à 5 photos. Elle sera publiée après validation.</p>
+      <div class="groupe-boutons">
+        <a class="bouton" href="/deposer-une-annonce/">Déposer une annonce</a>
+        <a class="bouton bouton--secondaire" href="/services/">Découvrir nos services</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="pied">
+  <div class="conteneur pied__grille">
+    <div><p class="pied__titre">{{SITE_NOM}}</p><p>{{SITE_SLOGAN}}</p><p>{{SITE_ADRESSE}}</p></div>
+    <div><p class="pied__titre">Contact</p><p><a href="tel:+{{SITE_TELEPHONE_INTERNATIONAL}}">{{SITE_TELEPHONE}}</a></p><p><a href="https://wa.me/{{SITE_TELEPHONE_INTERNATIONAL}}" rel="noopener" target="_blank">WhatsApp</a></p><p><a href="mailto:{{SITE_EMAIL}}">{{SITE_EMAIL}}</a></p></div>
+    <div><p class="pied__titre">Informations</p><p><a href="/services/">Nos services</a></p><p><a href="/a-propos/">À propos &amp; contact</a></p><p><a href="/mentions-legales/">Mentions légales</a></p><p><a href="/mentions-legales/#conditions">Conditions d'utilisation</a></p></div>
+  </div>
+  <p class="pied__copyright">© {{ANNEE}} {{SITE_NOM}} – {{FORME_JURIDIQUE}}, Mali. Tous droits réservés.</p>
+</footer>
+<div class="bandeau-cookies" role="region" aria-label="Information sur les cookies" hidden data-bandeau-cookies>
+  <p>Ce site n'utilise que des cookies techniques indispensables (session administrateur, sécurité). Aucun cookie publicitaire ni de suivi.</p>
+  <button type="button" class="bouton bouton--petit" data-cookies-ok>J'ai compris</button>
+</div>
+</body>
+</html>

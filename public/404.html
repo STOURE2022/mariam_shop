@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page introuvable – {{SITE_NOM}}</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#14532d">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script src="/assets/js/app.js" defer></script>
+</head>
+<body>
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+<header class="entete">
+  <div class="conteneur entete__barre">
+    <a class="logo" href="/" aria-label="{{SITE_NOM}} – accueil"><img src="/assets/img/logo.svg" width="40" height="40" alt=""><span>{{SITE_NOM}}</span></a>
+    <button class="menu-bouton" type="button" aria-expanded="false" aria-controls="menu-principal" data-menu-bouton><span class="menu-bouton__barres" aria-hidden="true"></span><span class="visuellement-cache">Menu</span></button>
+    <nav id="menu-principal" class="menu" aria-label="Navigation principale">
+      <a href="/">Accueil</a>
+      <a href="/annonces/">Annonces</a>
+      <a href="/services/">Services</a>
+      <a href="/a-propos/">À propos &amp; contact</a>
+      <a class="bouton bouton--or" href="/deposer-une-annonce/">Déposer une annonce</a>
+    </nav>
+  </div>
+</header>
+<main id="contenu" class="principal">
+  <section class="conteneur section section--etroite centre">
+    <p class="erreur-code">404</p>
+    <h1>Page introuvable</h1>
+    <p>La page que vous cherchez n'existe pas ou a été déplacée.</p>
+    <p><a class="bouton" href="/annonces/">Voir les annonces</a> <a class="bouton bouton--secondaire" href="/">Retour à l'accueil</a></p>
+  </section>
+</main>
+<footer class="pied">
+  <p class="pied__copyright">© {{ANNEE}} {{SITE_NOM}} – {{FORME_JURIDIQUE}}, Mali.</p>
+</footer>
+</body>
+</html>

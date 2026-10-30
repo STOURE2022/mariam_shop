@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Annonces – {{SITE_NOM}}</title>
+  <meta name="description" content="Toutes les annonces vérifiées de {{SITE_NOM}} : produits et services au Mali, filtrez par catégorie, ville et prix en FCFA.">
+  <link rel="canonical" href="{{SITE_URL}}/annonces/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{SITE_NOM}}">
+  <meta property="og:title" content="Annonces – {{SITE_NOM}}">
+  <meta property="og:description" content="Toutes les annonces vérifiées de {{SITE_NOM}} : produits et services au Mali.">
+  <meta property="og:url" content="{{SITE_URL}}/annonces/">
+  <meta property="og:image" content="{{SITE_URL}}/assets/img/og-default.png">
+  <meta property="og:locale" content="fr_ML">
+  <meta name="theme-color" content="#14532d">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script src="/assets/js/app.js" defer></script>
+  <script src="/assets/js/annonces.js" defer></script>
+</head>
+<body>
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+<header class="entete">
+  <div class="conteneur entete__barre">
+    <a class="logo" href="/" aria-label="{{SITE_NOM}} – accueil"><img src="/assets/img/logo.svg" width="40" height="40" alt=""><span>{{SITE_NOM}}</span></a>
+    <button class="menu-bouton" type="button" aria-expanded="false" aria-controls="menu-principal" data-menu-bouton><span class="menu-bouton__barres" aria-hidden="true"></span><span class="visuellement-cache">Menu</span></button>
+    <nav id="menu-principal" class="menu" aria-label="Navigation principale">
+      <a href="/">Accueil</a>
+      <a href="/annonces/" aria-current="page">Annonces</a>
+      <a href="/services/">Services</a>
+      <a href="/a-propos/">À propos &amp; contact</a>
+      <a class="bouton bouton--or" href="/deposer-une-annonce/">Déposer une annonce</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu" class="principal">
+  <section class="conteneur section">
+    <h1>Toutes les annonces</h1>
+    <form id="filtres" class="filtres" role="search" aria-label="Filtrer les annonces">
+      <div class="champ filtres__ligne filtres__ligne--pleine">
+        <label for="q">Rechercher</label>
+        <input type="search" id="q" name="q" placeholder="Ex. téléphone, couturier, moto…" maxlength="80" autocomplete="off">
+      </div>
+      <div class="filtres__ligne">
+        <div class="champ">
+          <label for="categorie">Catégorie</label>
+          <select id="categorie" name="categorie"><option value="">Toutes</option></select>
+        </div>
+        <div class="champ">
+          <label for="ville">Ville</label>
+          <select id="ville" name="ville"><option value="">Toutes</option></select>
+        </div>
+      </div>
+      <div class="filtres__ligne">
+        <div class="champ">
+          <label for="prix_min">Prix min (FCFA)</label>
+          <input type="number" id="prix_min" name="prix_min" min="0" step="500" inputmode="numeric" placeholder="0">
+        </div>
+        <div class="champ">
+          <label for="prix_max">Prix max (FCFA)</label>
+          <input type="number" id="prix_max" name="prix_max" min="0" step="500" inputmode="numeric" placeholder="Illimité">
+        </div>
+      </div>
+      <div class="groupe-boutons">
+        <button type="submit" class="bouton">Filtrer</button>
+        <button type="button" class="bouton bouton--lien" data-reinitialiser>Réinitialiser</button>
+      </div>
+    </form>
+
+    <p id="resultats-info" class="resultats-info" aria-live="polite"></p>
+    <ul id="liste-annonces" class="grille-annonces">
+      <li class="squelette"></li><li class="squelette"></li><li class="squelette"></li><li class="squelette"></li>
+    </ul>
+    <nav id="pagination" class="pagination" aria-label="Pagination"></nav>
+  </section>
+</main>
+
+<footer class="pied">
+  <div class="conteneur pied__grille">
+    <div><p class="pied__titre">{{SITE_NOM}}</p><p>{{SITE_SLOGAN}}</p><p>{{SITE_ADRESSE}}</p></div>
+    <div><p class="pied__titre">Contact</p><p><a href="tel:+{{SITE_TELEPHONE_INTERNATIONAL}}">{{SITE_TELEPHONE}}</a></p><p><a href="https://wa.me/{{SITE_TELEPHONE_INTERNATIONAL}}" rel="noopener" target="_blank">WhatsApp</a></p><p><a href="mailto:{{SITE_EMAIL}}">{{SITE_EMAIL}}</a></p></div>
+    <div><p class="pied__titre">Informations</p><p><a href="/services/">Nos services</a></p><p><a href="/a-propos/">À propos &amp; contact</a></p><p><a href="/mentions-legales/">Mentions légales</a></p><p><a href="/mentions-legales/#conditions">Conditions d'utilisation</a></p></div>
+  </div>
+  <p class="pied__copyright">© {{ANNEE}} {{SITE_NOM}} – {{FORME_JURIDIQUE}}, Mali. Tous droits réservés.</p>
+</footer>
+<div class="bandeau-cookies" role="region" aria-label="Information sur les cookies" hidden data-bandeau-cookies>
+  <p>Ce site n'utilise que des cookies techniques indispensables (session administrateur, sécurité). Aucun cookie publicitaire ni de suivi.</p>
+  <button type="button" class="bouton bouton--petit" data-cookies-ok>J'ai compris</button>
+</div>
+</body>
+</html>

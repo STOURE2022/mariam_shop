@@ -1,0 +1,41 @@
+# Configuration Cloudflare Pages pour MARIAM SHOP
+# Documentation : https://developers.cloudflare.com/pages/functions/wrangler-configuration/
+
+name = "mariam-shop"
+compatibility_date = "2026-10-01"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = "./dist"
+
+# ---------------------------------------------------------------------------
+# Base de données D1
+# Créer avec : npx wrangler d1 create mariam-shop-db
+# puis coller le database_id affiché ci-dessous.
+# ---------------------------------------------------------------------------
+[[d1_databases]]
+binding = "DB"
+database_name = "mariam-shop-db"
+database_id = "A_REMPLACER_PAR_L_ID_AFFICHE_PAR_WRANGLER"
+
+# ---------------------------------------------------------------------------
+# Stockage des photos R2
+# Créer avec : npx wrangler r2 bucket create mariam-shop-photos
+# ---------------------------------------------------------------------------
+[[r2_buckets]]
+binding = "PHOTOS"
+bucket_name = "mariam-shop-photos"
+
+# ---------------------------------------------------------------------------
+# Variables NON secrètes (les secrets se configurent dans le tableau de bord
+# Cloudflare > Pages > Settings > Environment variables, ou via
+# `npx wrangler pages secret put NOM_DU_SECRET`).
+# ---------------------------------------------------------------------------
+[vars]
+ENVIRONNEMENT = "production"
+# Durée de session admin en secondes (12 h)
+ADMIN_SESSION_DUREE = "43200"
+# Limites de débit : nombre max de soumissions par IP et par fenêtre (en secondes)
+LIMITE_ANNONCES_PAR_HEURE = "5"
+LIMITE_CONTACT_PAR_HEURE = "5"
+LIMITE_CONNEXION_PAR_QUART_HEURE = "10"
+# Paiement Orange Money (phase 2) : "false" tant que les identifiants ne sont pas fournis
+PAIEMENT_ACTIF = "false"

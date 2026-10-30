@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Déposer une annonce – {{SITE_NOM}}</title>
+  <meta name="description" content="Déposez gratuitement votre annonce de vente ou de service sur {{SITE_NOM}}. Jusqu'à 5 photos, publication après validation.">
+  <link rel="canonical" href="{{SITE_URL}}/deposer-une-annonce/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{SITE_NOM}}">
+  <meta property="og:title" content="Déposer une annonce – {{SITE_NOM}}">
+  <meta property="og:description" content="Déposez gratuitement votre annonce de vente ou de service. Publication après validation.">
+  <meta property="og:url" content="{{SITE_URL}}/deposer-une-annonce/">
+  <meta property="og:image" content="{{SITE_URL}}/assets/img/og-default.png">
+  <meta property="og:locale" content="fr_ML">
+  <meta name="theme-color" content="#14532d">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script src="/assets/js/app.js" defer></script>
+  <script src="/assets/js/deposer.js" defer></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+<body>
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+<header class="entete">
+  <div class="conteneur entete__barre">
+    <a class="logo" href="/" aria-label="{{SITE_NOM}} – accueil"><img src="/assets/img/logo.svg" width="40" height="40" alt=""><span>{{SITE_NOM}}</span></a>
+    <button class="menu-bouton" type="button" aria-expanded="false" aria-controls="menu-principal" data-menu-bouton><span class="menu-bouton__barres" aria-hidden="true"></span><span class="visuellement-cache">Menu</span></button>
+    <nav id="menu-principal" class="menu" aria-label="Navigation principale">
+      <a href="/">Accueil</a>
+      <a href="/annonces/">Annonces</a>
+      <a href="/services/">Services</a>
+      <a href="/a-propos/">À propos &amp; contact</a>
+      <a class="bouton bouton--or" href="/deposer-une-annonce/" aria-current="page">Déposer une annonce</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu" class="principal">
+  <section class="conteneur section section--etroite">
+    <h1>Déposer une annonce</h1>
+    <p>C'est gratuit. Remplissez le formulaire ci-dessous : votre annonce sera relue par notre équipe puis publiée, généralement sous 24 h. Votre numéro n'est jamais affiché publiquement : les acheteurs vous contactent via un bouton WhatsApp.</p>
+
+    <div id="alerte" class="alerte" hidden></div>
+
+    <div id="succes" class="alerte alerte--succes" hidden role="status">
+      <h2>Merci ! Votre annonce a bien été reçue.</h2>
+      <p>Votre annonce sera publiée après validation par notre équipe. Référence : <strong data-reference></strong>.</p>
+      <p><a class="bouton" href="/annonces/">Voir les annonces</a> <a class="bouton bouton--secondaire" href="/deposer-une-annonce/">Déposer une autre annonce</a></p>
+    </div>
+
+    <form id="form-annonce" class="formulaire" method="post" action="/api/annonces" enctype="multipart/form-data" novalidate>
+      <div class="champ">
+        <label for="titre">Titre de l'annonce <span class="obligatoire" aria-hidden="true">*</span></label>
+        <input type="text" id="titre" name="titre" required minlength="5" maxlength="100" placeholder="Ex. iPhone 11 64 Go très bon état" autocomplete="off">
+        <p class="aide">Entre 5 et 100 caractères. Soyez précis : marque, modèle, état.</p>
+      </div>
+
+      <div class="champ--ligne">
+        <div class="champ">
+          <label for="categorie_id">Catégorie <span class="obligatoire" aria-hidden="true">*</span></label>
+          <select id="categorie_id" name="categorie_id" required><option value="">Choisir…</option></select>
+        </div>
+        <div class="champ">
+          <label for="ville">Ville <span class="obligatoire" aria-hidden="true">*</span></label>
+          <select id="ville" name="ville" required><option value="">Choisir…</option></select>
+        </div>
+      </div>
+
+      <div class="champ">
+        <label for="description">Description <span class="obligatoire" aria-hidden="true">*</span></label>
+        <textarea id="description" name="description" required minlength="20" maxlength="3000" placeholder="Décrivez le produit ou le service : état, caractéristiques, conditions de livraison…"></textarea>
+        <p class="compteur-caracteres" id="compteur-description" aria-live="polite">0 / 3000</p>
+      </div>
+
+      <div class="champ">
+        <label for="prix">Prix (FCFA) <span class="obligatoire" aria-hidden="true">*</span></label>
+        <input type="number" id="prix" name="prix" required min="0" step="1" inputmode="numeric" placeholder="Ex. 150000">
+        <p class="aide">Indiquez 0 si le prix est à négocier.</p>
+      </div>
+
+      <div class="champ">
+        <span class="legende" id="legende-photos">Photos (jusqu'à 5, JPEG/PNG/WebP, 5 Mo max chacune)</span>
+        <div class="zone-photos">
+          <label for="photos" class="visuellement-cache">Ajouter des photos</label>
+          <input type="file" id="photos" name="photos" accept="image/jpeg,image/png,image/webp" multiple aria-describedby="legende-photos">
+          <p class="aide" id="nb-photos">0 / 5 photo(s)</p>
+          <p class="aide">Les photos sont compressées automatiquement pour un envoi rapide même en 3G.</p>
+        </div>
+        <ul id="apercus" class="apercus" aria-label="Aperçu des photos"></ul>
+      </div>
+
+      <h2>Vos coordonnées (non publiées)</h2>
+      <div class="champ--ligne">
+        <div class="champ">
+          <label for="nom_vendeur">Votre nom <span class="obligatoire" aria-hidden="true">*</span></label>
+          <input type="text" id="nom_vendeur" name="nom_vendeur" required minlength="2" maxlength="80" autocomplete="name">
+        </div>
+        <div class="champ">
+          <label for="telephone_vendeur">Téléphone WhatsApp <span class="obligatoire" aria-hidden="true">*</span></label>
+          <input type="tel" id="telephone_vendeur" name="telephone_vendeur" required inputmode="tel" placeholder="76 12 34 56" autocomplete="tel">
+          <p class="aide">Utilisé pour le bouton « Contacter sur WhatsApp » de votre annonce.</p>
+        </div>
+      </div>
+
+      <div class="case">
+        <input type="checkbox" id="consentement" name="consentement" value="true" required>
+        <label for="consentement">J'accepte les <a href="/mentions-legales/#conditions" target="_blank" rel="noopener">conditions d'utilisation</a> et je certifie que cette annonce est licite et exacte. <span class="obligatoire" aria-hidden="true">*</span></label>
+      </div>
+
+      <div class="cf-turnstile" data-sitekey="{{TURNSTILE_SITE_KEY}}" data-language="fr" data-theme="light"></div>
+
+      <button type="submit" class="bouton bouton--or bouton--large">Envoyer mon annonce</button>
+      <p class="aide">Champs marqués d'un * obligatoires. Votre annonce sera publiée après validation.</p>
+    </form>
+  </section>
+</main>
+
+<footer class="pied">
+  <div class="conteneur pied__grille">
+    <div><p class="pied__titre">{{SITE_NOM}}</p><p>{{SITE_SLOGAN}}</p><p>{{SITE_ADRESSE}}</p></div>
+    <div><p class="pied__titre">Contact</p><p><a href="tel:+{{SITE_TELEPHONE_INTERNATIONAL}}">{{SITE_TELEPHONE}}</a></p><p><a href="https://wa.me/{{SITE_TELEPHONE_INTERNATIONAL}}" rel="noopener" target="_blank">WhatsApp</a></p><p><a href="mailto:{{SITE_EMAIL}}">{{SITE_EMAIL}}</a></p></div>
+    <div><p class="pied__titre">Informations</p><p><a href="/services/">Nos services</a></p><p><a href="/a-propos/">À propos &amp; contact</a></p><p><a href="/mentions-legales/">Mentions légales</a></p><p><a href="/mentions-legales/#conditions">Conditions d'utilisation</a></p></div>
+  </div>
+  <p class="pied__copyright">© {{ANNEE}} {{SITE_NOM}} – {{FORME_JURIDIQUE}}, Mali. Tous droits réservés.</p>
+</footer>
+<div class="bandeau-cookies" role="region" aria-label="Information sur les cookies" hidden data-bandeau-cookies>
+  <p>Ce site n'utilise que des cookies techniques indispensables (session administrateur, sécurité). Aucun cookie publicitaire ni de suivi.</p>
+  <button type="button" class="bouton bouton--petit" data-cookies-ok>J'ai compris</button>
+</div>
+</body>
+</html>

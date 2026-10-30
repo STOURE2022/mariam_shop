@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connexion administrateur – {{SITE_NOM}}</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#14532d">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script src="/assets/js/app.js" defer></script>
+  <script src="/assets/js/connexion.js" defer></script>
+</head>
+<body>
+<header class="entete admin-barre">
+  <div class="conteneur entete__barre">
+    <a class="logo" href="/" aria-label="{{SITE_NOM}} – accueil"><img src="/assets/img/logo.svg" width="40" height="40" alt=""><span>{{SITE_NOM}} · Administration</span></a>
+  </div>
+</header>
+<main id="contenu" class="principal">
+  <section class="conteneur connexion">
+    <h1>Connexion</h1>
+    <div id="alerte" class="alerte" hidden></div>
+    <form id="form-connexion" class="formulaire" method="post" action="/api/admin/connexion" novalidate>
+      <div class="champ">
+        <label for="identifiant">Identifiant</label>
+        <input type="text" id="identifiant" name="identifiant" required autocomplete="username" autocapitalize="off" spellcheck="false">
+      </div>
+      <div class="champ">
+        <label for="mot_de_passe">Mot de passe</label>
+        <input type="password" id="mot_de_passe" name="mot_de_passe" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="bouton bouton--large">Se connecter</button>
+    </form>
+    <p class="note centre" style="margin-top:1rem"><a href="/">← Retour au site</a></p>
+  </section>
+</main>
+</body>
+</html>

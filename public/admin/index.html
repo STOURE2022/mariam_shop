@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tableau de bord – {{SITE_NOM}}</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#14532d">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script src="/assets/js/app.js" defer></script>
+  <script src="/assets/js/admin.js" defer></script>
+</head>
+<body data-page="tableau">
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+<header class="entete admin-barre">
+  <div class="conteneur entete__barre">
+    <a class="logo" href="/admin/" aria-label="Administration – tableau de bord"><img src="/assets/img/logo.svg" width="40" height="40" alt=""><span>{{SITE_NOM}} · Admin</span></a>
+    <button class="menu-bouton" type="button" aria-expanded="false" aria-controls="menu-principal" data-menu-bouton><span class="menu-bouton__barres" aria-hidden="true"></span><span class="visuellement-cache">Menu</span></button>
+    <nav id="menu-principal" class="menu" aria-label="Navigation administrateur">
+      <a href="/admin/" aria-current="page">Annonces</a>
+      <a href="/admin/messages">Messages (<span data-compteur="messages_non_lus">…</span>)</a>
+      <a href="/" target="_blank" rel="noopener">Voir le site</a>
+      <button type="button" class="bouton bouton--or bouton--petit" data-deconnexion>Déconnexion (<span data-admin-nom>…</span>)</button>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu" class="principal">
+  <section class="conteneur section">
+    <h1>Tableau de bord</h1>
+    <div class="compteurs">
+      <a class="compteur" href="/admin/?statut=en_attente" data-statut="en_attente"><strong data-compteur="en_attente">…</strong><span>En attente</span></a>
+      <a class="compteur" href="/admin/?statut=publiee" data-statut="publiee"><strong data-compteur="publiee">…</strong><span>Publiées</span></a>
+      <a class="compteur" href="/admin/?statut=rejetee" data-statut="rejetee"><strong data-compteur="rejetee">…</strong><span>Rejetées</span></a>
+      <a class="compteur" href="/admin/?statut=vendue" data-statut="vendue"><strong data-compteur="vendue">…</strong><span>Vendues</span></a>
+      <a class="compteur" href="/admin/messages"><strong data-compteur="messages_non_lus">…</strong><span>Messages non lus</span></a>
+    </div>
+
+    <div id="alerte" class="alerte" hidden></div>
+
+    <div id="onglets" class="onglets" role="tablist" aria-label="Filtrer par statut">
+      <button type="button" role="tab" data-statut="en_attente" aria-selected="true">En attente</button>
+      <button type="button" role="tab" data-statut="publiee" aria-selected="false">Publiées</button>
+      <button type="button" role="tab" data-statut="rejetee" aria-selected="false">Rejetées</button>
+      <button type="button" role="tab" data-statut="vendue" aria-selected="false">Vendues</button>
+    </div>
+
+    <ul id="liste-admin" class="liste-admin" aria-live="polite"></ul>
+    <nav id="pagination" class="pagination" aria-label="Pagination"></nav>
+  </section>
+</main>
+
+<dialog id="dialogue" class="dialogue">
+  <form method="dialog">
+    <h2>Confirmer</h2>
+    <p data-texte></p>
+    <div class="champ"><label for="dialogue-texte" class="visuellement-cache">Motif</label><textarea id="dialogue-texte" rows="3" maxlength="500" placeholder="Motif (3 caractères minimum)"></textarea></div>
+    <div class="groupe-boutons" style="margin-top:1rem">
+      <button type="submit" class="bouton" data-ok>Confirmer</button>
+      <button type="button" class="bouton bouton--secondaire" data-annuler>Annuler</button>
+    </div>
+  </form>
+</dialog>
+</body>
+</html>

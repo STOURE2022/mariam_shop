@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modifier une annonce – {{SITE_NOM}}</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#14532d">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script src="/assets/js/app.js" defer></script>
+  <script src="/assets/js/admin.js" defer></script>
+</head>
+<body data-page="annonce">
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+<header class="entete admin-barre">
+  <div class="conteneur entete__barre">
+    <a class="logo" href="/admin/" aria-label="Administration – tableau de bord"><img src="/assets/img/logo.svg" width="40" height="40" alt=""><span>{{SITE_NOM}} · Admin</span></a>
+    <button class="menu-bouton" type="button" aria-expanded="false" aria-controls="menu-principal" data-menu-bouton><span class="menu-bouton__barres" aria-hidden="true"></span><span class="visuellement-cache">Menu</span></button>
+    <nav id="menu-principal" class="menu" aria-label="Navigation administrateur">
+      <a href="/admin/">Annonces</a>
+      <a href="/admin/messages">Messages (<span data-compteur="messages_non_lus">…</span>)</a>
+      <a href="/" target="_blank" rel="noopener">Voir le site</a>
+      <button type="button" class="bouton bouton--or bouton--petit" data-deconnexion>Déconnexion (<span data-admin-nom>…</span>)</button>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu" class="principal">
+  <section class="conteneur section section--etroite">
+    <p><a href="/admin/">← Retour au tableau de bord</a></p>
+    <h1 id="titre-page">Modifier l'annonce</h1>
+    <p id="statut-actuel"></p>
+    <div id="alerte" class="alerte" hidden></div>
+
+    <form id="form-edition" class="formulaire" novalidate hidden>
+      <div class="champ">
+        <label for="titre">Titre</label>
+        <input type="text" id="titre" name="titre" required minlength="5" maxlength="100">
+      </div>
+      <div class="champ--ligne">
+        <div class="champ">
+          <label for="categorie_id">Catégorie</label>
+          <select id="categorie_id" name="categorie_id" required></select>
+        </div>
+        <div class="champ">
+          <label for="ville">Ville</label>
+          <select id="ville" name="ville" required></select>
+        </div>
+      </div>
+      <div class="champ">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" required minlength="20" maxlength="3000"></textarea>
+      </div>
+      <div class="champ">
+        <label for="prix">Prix (FCFA)</label>
+        <input type="number" id="prix" name="prix" required min="0" step="1" inputmode="numeric">
+      </div>
+      <div class="champ">
+        <span class="legende">Photos</span>
+        <ul id="photos-admin" class="photos-admin"></ul>
+      </div>
+      <h2>Vendeur (données privées)</h2>
+      <div class="champ--ligne">
+        <div class="champ">
+          <label for="nom_vendeur">Nom</label>
+          <input type="text" id="nom_vendeur" name="nom_vendeur" required maxlength="80">
+        </div>
+        <div class="champ">
+          <label for="telephone_vendeur">Téléphone</label>
+          <input type="tel" id="telephone_vendeur" name="telephone_vendeur" required>
+        </div>
+      </div>
+      <button type="submit" class="bouton bouton--large">Enregistrer les modifications</button>
+      <h2>Changer le statut</h2>
+      <div class="groupe-boutons">
+        <button type="button" class="bouton" data-statut-action="publiee">Valider / publier</button>
+        <button type="button" class="bouton bouton--secondaire" data-statut-action="rejetee">Rejeter</button>
+        <button type="button" class="bouton bouton--or" data-statut-action="vendue">Marquer vendue</button>
+        <button type="button" class="bouton bouton--secondaire" data-statut-action="en_attente">Remettre en attente</button>
+        <button type="button" class="bouton bouton--danger" data-supprimer>Supprimer l'annonce</button>
+      </div>
+    </form>
+  </section>
+</main>
+
+<dialog id="dialogue" class="dialogue">
+  <form method="dialog">
+    <h2>Confirmer</h2>
+    <p data-texte></p>
+    <div class="champ"><label for="dialogue-texte" class="visuellement-cache">Motif</label><textarea id="dialogue-texte" rows="3" maxlength="500" placeholder="Motif (3 caractères minimum)"></textarea></div>
+    <div class="groupe-boutons" style="margin-top:1rem">
+      <button type="submit" class="bouton" data-ok>Confirmer</button>
+      <button type="button" class="bouton bouton--secondaire" data-annuler>Annuler</button>
+    </div>
+  </form>
+</dialog>
+</body>
+</html>

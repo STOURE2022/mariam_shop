@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nos services – {{SITE_NOM}}</title>
+  <meta name="description" content="Les prestations de {{SITE_NOM}} au Mali : vente de produits, commandes et livraison à Bamako, intermédiation et publication d'annonces, services sur mesure.">
+  <link rel="canonical" href="{{SITE_URL}}/services/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{SITE_NOM}}">
+  <meta property="og:title" content="Nos services – {{SITE_NOM}}">
+  <meta property="og:description" content="Les prestations de {{SITE_NOM}} : vente, commandes, livraison, annonces et services sur mesure.">
+  <meta property="og:url" content="{{SITE_URL}}/services/">
+  <meta property="og:image" content="{{SITE_URL}}/assets/img/og-default.png">
+  <meta property="og:locale" content="fr_ML">
+  <meta name="theme-color" content="#14532d">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Services de {{SITE_NOM}}",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "item": { "@type": "Service", "name": "Vente de produits", "provider": { "@type": "LocalBusiness", "name": "{{SITE_NOM}}" }, "areaServed": "Mali" } },
+      { "@type": "ListItem", "position": 2, "item": { "@type": "Service", "name": "Commande et livraison", "provider": { "@type": "LocalBusiness", "name": "{{SITE_NOM}}" }, "areaServed": "Mali" } },
+      { "@type": "ListItem", "position": 3, "item": { "@type": "Service", "name": "Publication d'annonces vérifiées", "provider": { "@type": "LocalBusiness", "name": "{{SITE_NOM}}" }, "areaServed": "Mali" } },
+      { "@type": "ListItem", "position": 4, "item": { "@type": "Service", "name": "Prestations sur mesure", "provider": { "@type": "LocalBusiness", "name": "{{SITE_NOM}}" }, "areaServed": "Mali" } }
+    ]
+  }
+  </script>
+  <script src="/assets/js/app.js" defer></script>
+</head>
+<body>
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+<header class="entete">
+  <div class="conteneur entete__barre">
+    <a class="logo" href="/" aria-label="{{SITE_NOM}} – accueil"><img src="/assets/img/logo.svg" width="40" height="40" alt=""><span>{{SITE_NOM}}</span></a>
+    <button class="menu-bouton" type="button" aria-expanded="false" aria-controls="menu-principal" data-menu-bouton><span class="menu-bouton__barres" aria-hidden="true"></span><span class="visuellement-cache">Menu</span></button>
+    <nav id="menu-principal" class="menu" aria-label="Navigation principale">
+      <a href="/">Accueil</a>
+      <a href="/annonces/">Annonces</a>
+      <a href="/services/" aria-current="page">Services</a>
+      <a href="/a-propos/">À propos &amp; contact</a>
+      <a class="bouton bouton--or" href="/deposer-une-annonce/">Déposer une annonce</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu" class="principal">
+  <section class="conteneur section">
+    <h1>Nos services</h1>
+    <p>{{SITE_NOM}} est une entreprise individuelle malienne spécialisée dans la prestation de services. Voici ce que nous proposons ; pour toute demande particulière, <a href="/a-propos/#contact">contactez-nous</a>.</p>
+
+    <ul class="liste-services">
+      <li class="service">
+        <h3>Vente de produits</h3>
+        <p>Téléphones, accessoires, articles de mode, cosmétiques, produits pour la maison… Nous sélectionnons des produits de qualité et vous les proposons au meilleur prix en FCFA.</p>
+        <a class="bouton bouton--petit" href="/annonces/">Voir le catalogue</a>
+      </li>
+      <li class="service">
+        <h3>Commande et livraison</h3>
+        <p>Vous avez repéré un article ? Commandez-le via WhatsApp : nous organisons la remise en main propre ou la livraison à Bamako et l'envoi vers les régions.</p>
+        <a class="bouton bouton--petit bouton--whatsapp" href="https://wa.me/{{SITE_TELEPHONE_INTERNATIONAL}}?text=Bonjour%20{{SITE_NOM}}%2C%20je%20souhaite%20passer%20une%20commande." target="_blank" rel="noopener">Commander sur WhatsApp</a>
+      </li>
+      <li class="service">
+        <h3>Publication d'annonces vérifiées</h3>
+        <p>Particuliers et professionnels peuvent déposer gratuitement une annonce de vente ou de service. Chaque annonce est relue avant publication pour garantir la confiance des acheteurs.</p>
+        <a class="bouton bouton--petit bouton--or" href="/deposer-une-annonce/">Déposer une annonce</a>
+      </li>
+      <li class="service">
+        <h3>Recherche de produits sur demande</h3>
+        <p>Vous cherchez un article introuvable ? Décrivez-le nous : nous le recherchons auprès de nos fournisseurs et partenaires et vous faisons un devis.</p>
+        <a class="bouton bouton--petit bouton--secondaire" href="/a-propos/#contact">Faire une demande</a>
+      </li>
+      <li class="service">
+        <h3>Prestations sur mesure</h3>
+        <p>Services d'intermédiation, de conseil et d'accompagnement adaptés à vos besoins. Devis gratuit et sans engagement.</p>
+        <a class="bouton bouton--petit bouton--secondaire" href="/a-propos/#contact">Demander un devis</a>
+      </li>
+      <li class="service">
+        <h3>Paiement simple</h3>
+        <p>Paiement à la livraison en espèces ou par Mobile Money. Le paiement en ligne par Orange Money arrivera prochainement sur le site.</p>
+      </li>
+    </ul>
+  </section>
+</main>
+
+<footer class="pied">
+  <div class="conteneur pied__grille">
+    <div><p class="pied__titre">{{SITE_NOM}}</p><p>{{SITE_SLOGAN}}</p><p>{{SITE_ADRESSE}}</p></div>
+    <div><p class="pied__titre">Contact</p><p><a href="tel:+{{SITE_TELEPHONE_INTERNATIONAL}}">{{SITE_TELEPHONE}}</a></p><p><a href="https://wa.me/{{SITE_TELEPHONE_INTERNATIONAL}}" rel="noopener" target="_blank">WhatsApp</a></p><p><a href="mailto:{{SITE_EMAIL}}">{{SITE_EMAIL}}</a></p></div>
+    <div><p class="pied__titre">Informations</p><p><a href="/services/">Nos services</a></p><p><a href="/a-propos/">À propos &amp; contact</a></p><p><a href="/mentions-legales/">Mentions légales</a></p><p><a href="/mentions-legales/#conditions">Conditions d'utilisation</a></p></div>
+  </div>
+  <p class="pied__copyright">© {{ANNEE}} {{SITE_NOM}} – {{FORME_JURIDIQUE}}, Mali. Tous droits réservés.</p>
+</footer>
+<div class="bandeau-cookies" role="region" aria-label="Information sur les cookies" hidden data-bandeau-cookies>
+  <p>Ce site n'utilise que des cookies techniques indispensables (session administrateur, sécurité). Aucun cookie publicitaire ni de suivi.</p>
+  <button type="button" class="bouton bouton--petit" data-cookies-ok>J'ai compris</button>
+</div>
+</body>
+</html>

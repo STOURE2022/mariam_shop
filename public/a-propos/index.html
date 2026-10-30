@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>À propos et contact – {{SITE_NOM}}</title>
+  <meta name="description" content="Qui est {{SITE_NOM}} ? Entreprise individuelle au Mali dirigée par {{RESPONSABLE}}. Contactez-nous par WhatsApp, téléphone, e-mail ou via le formulaire.">
+  <link rel="canonical" href="{{SITE_URL}}/a-propos/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{SITE_NOM}}">
+  <meta property="og:title" content="À propos et contact – {{SITE_NOM}}">
+  <meta property="og:description" content="Présentation de {{SITE_NOM}} et moyens de contact.">
+  <meta property="og:url" content="{{SITE_URL}}/a-propos/">
+  <meta property="og:image" content="{{SITE_URL}}/assets/img/og-default.png">
+  <meta property="og:locale" content="fr_ML">
+  <meta name="theme-color" content="#14532d">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "{{SITE_NOM}}",
+    "url": "{{SITE_URL}}/",
+    "telephone": "+{{SITE_TELEPHONE_INTERNATIONAL}}",
+    "email": "{{SITE_EMAIL}}",
+    "address": { "@type": "PostalAddress", "streetAddress": "{{SITE_ADRESSE}}", "addressLocality": "{{SITE_VILLE}}", "addressRegion": "Koulikoro", "addressCountry": "ML" },
+    "identifier": [
+      { "@type": "PropertyValue", "propertyID": "RCCM", "value": "{{RCCM}}" },
+      { "@type": "PropertyValue", "propertyID": "NINA", "value": "{{NINA}}" }
+    ],
+    "openingHours": "Mo-Sa 08:00-19:00",
+    "founder": { "@type": "Person", "name": "{{RESPONSABLE}}" }
+  }
+  </script>
+  <script src="/assets/js/app.js" defer></script>
+  <script src="/assets/js/contact.js" defer></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+<body>
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+<header class="entete">
+  <div class="conteneur entete__barre">
+    <a class="logo" href="/" aria-label="{{SITE_NOM}} – accueil"><img src="/assets/img/logo.svg" width="40" height="40" alt=""><span>{{SITE_NOM}}</span></a>
+    <button class="menu-bouton" type="button" aria-expanded="false" aria-controls="menu-principal" data-menu-bouton><span class="menu-bouton__barres" aria-hidden="true"></span><span class="visuellement-cache">Menu</span></button>
+    <nav id="menu-principal" class="menu" aria-label="Navigation principale">
+      <a href="/">Accueil</a>
+      <a href="/annonces/">Annonces</a>
+      <a href="/services/">Services</a>
+      <a href="/a-propos/" aria-current="page">À propos &amp; contact</a>
+      <a class="bouton bouton--or" href="/deposer-une-annonce/">Déposer une annonce</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu" class="principal">
+  <section class="conteneur section">
+    <h1>À propos de {{SITE_NOM}}</h1>
+    <div class="deux-colonnes">
+      <div>
+        <p>{{SITE_NOM}} est une entreprise individuelle malienne immatriculée au RCCM ({{RCCM}}), dirigée par <strong>{{RESPONSABLE}}</strong> et basée à Kati, aux portes de Bamako. Elle est spécialisée dans le commerce général et la prestation de services.</p>
+        <p>Notre ambition : offrir aux Maliens de Bamako et de l'intérieur du pays une plateforme simple, rapide même avec une connexion limitée, où l'on peut acheter en confiance et faire connaître ses produits ou ses services.</p>
+        <p>Chaque annonce déposée sur le site est relue et validée par notre équipe avant publication. Nous ne publions jamais les coordonnées des vendeurs : le contact se fait via WhatsApp, en un clic.</p>
+        <h2>Nos valeurs</h2>
+        <ul>
+          <li><strong>Confiance</strong> : annonces vérifiées, prix affichés clairement en FCFA.</li>
+          <li><strong>Proximité</strong> : réponse rapide par WhatsApp, remise en main propre à Bamako.</li>
+          <li><strong>Accessibilité</strong> : site léger pensé pour le mobile et la 3G.</li>
+        </ul>
+      </div>
+      <aside class="bloc-contact" aria-labelledby="titre-coordonnees">
+        <h2 id="titre-coordonnees">Nous joindre</h2>
+        <dl>
+          <dt>WhatsApp / Téléphone</dt>
+          <dd><a href="tel:+{{SITE_TELEPHONE_INTERNATIONAL}}">{{SITE_TELEPHONE}}</a> – <a href="https://wa.me/{{SITE_TELEPHONE_INTERNATIONAL}}?text=Bonjour%20{{SITE_NOM}}" target="_blank" rel="noopener">Écrire sur WhatsApp</a></dd>
+          <dt>Second numéro</dt>
+          <dd><a href="tel:+{{SITE_TELEPHONE_2_INTERNATIONAL}}">{{SITE_TELEPHONE_2}}</a></dd>
+          <dt>E-mail</dt>
+          <dd><a href="mailto:{{SITE_EMAIL}}">{{SITE_EMAIL}}</a></dd>
+          <dt>Adresse</dt>
+          <dd>{{SITE_ADRESSE}}</dd>
+          <dt>Horaires</dt>
+          <dd>{{SITE_HORAIRES}}</dd>
+        </dl>
+        <div class="carte-adresse">
+          <p><strong>📍 {{SITE_ADRESSE}}</strong></p>
+          <p style="margin:0"><a href="https://www.google.com/maps/search/?api=1&amp;query={{SITE_ADRESSE}}" target="_blank" rel="noopener">Ouvrir dans Google Maps</a></p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="conteneur section section--etroite" id="contact">
+    <h2>Formulaire de contact</h2>
+    <p>Une question, une demande de devis, un problème avec une annonce ? Écrivez-nous.</p>
+    <div id="alerte-contact" class="alerte" hidden></div>
+    <form id="form-contact" class="formulaire" method="post" action="/api/contact" novalidate>
+      <div class="champ">
+        <label for="nom">Votre nom <span class="obligatoire" aria-hidden="true">*</span></label>
+        <input type="text" id="nom" name="nom" required minlength="2" maxlength="80" autocomplete="name">
+      </div>
+      <div class="champ--ligne">
+        <div class="champ">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" maxlength="254" autocomplete="email">
+        </div>
+        <div class="champ">
+          <label for="telephone">Téléphone</label>
+          <input type="tel" id="telephone" name="telephone" inputmode="tel" placeholder="76 12 34 56" autocomplete="tel">
+        </div>
+      </div>
+      <p class="aide">Indiquez au moins un e-mail ou un numéro de téléphone.</p>
+      <div class="champ">
+        <label for="message">Message <span class="obligatoire" aria-hidden="true">*</span></label>
+        <textarea id="message" name="message" required minlength="10" maxlength="3000"></textarea>
+      </div>
+      <div class="pot-de-miel" aria-hidden="true">
+        <label for="site_web">Ne pas remplir</label>
+        <input type="text" id="site_web" name="site_web" tabindex="-1" autocomplete="off">
+      </div>
+      <div class="cf-turnstile" data-sitekey="{{TURNSTILE_SITE_KEY}}" data-language="fr" data-theme="light"></div>
+      <button type="submit" class="bouton bouton--large">Envoyer le message</button>
+    </form>
+  </section>
+</main>
+
+<footer class="pied">
+  <div class="conteneur pied__grille">
+    <div><p class="pied__titre">{{SITE_NOM}}</p><p>{{SITE_SLOGAN}}</p><p>{{SITE_ADRESSE}}</p></div>
+    <div><p class="pied__titre">Contact</p><p><a href="tel:+{{SITE_TELEPHONE_INTERNATIONAL}}">{{SITE_TELEPHONE}}</a></p><p><a href="https://wa.me/{{SITE_TELEPHONE_INTERNATIONAL}}" rel="noopener" target="_blank">WhatsApp</a></p><p><a href="mailto:{{SITE_EMAIL}}">{{SITE_EMAIL}}</a></p></div>
+    <div><p class="pied__titre">Informations</p><p><a href="/services/">Nos services</a></p><p><a href="/a-propos/">À propos &amp; contact</a></p><p><a href="/mentions-legales/">Mentions légales</a></p><p><a href="/mentions-legales/#conditions">Conditions d'utilisation</a></p></div>
+  </div>
+  <p class="pied__copyright">© {{ANNEE}} {{SITE_NOM}} – {{FORME_JURIDIQUE}}, Mali. Tous droits réservés.</p>
+</footer>
+<div class="bandeau-cookies" role="region" aria-label="Information sur les cookies" hidden data-bandeau-cookies>
+  <p>Ce site n'utilise que des cookies techniques indispensables (session administrateur, sécurité). Aucun cookie publicitaire ni de suivi.</p>
+  <button type="button" class="bouton bouton--petit" data-cookies-ok>J'ai compris</button>
+</div>
+</body>
+</html>
